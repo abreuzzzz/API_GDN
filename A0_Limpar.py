@@ -15,9 +15,9 @@ client = gspread.authorize(creds)
 
 # === IDs das planilhas ===
 planilhas_ids = {
-        "Financeiro_contas_a_receber_Bluefields": "1IkG2bG2qwfUPIRwE-igQ-gbsH5B3vmlH_ButiOoorAM",
-    "Financeiro_contas_a_pagar_Bluefields": "1As4IarqpWofUxl6g4X0TRuBMIgP-uJEFkWDIqqFcZBY",
-    "Financeiro_Completo_Bluefields": "1sBKeD9Bgwy59xAJzetF1gVDShrnCocQnuYB2CRtutPk"
+        "Financeiro_contas_a_receber_GDN": "1885sXKmEK1oOg1uBgrM4P4WhY_jEDxF7LdXDizcR25k",
+    "Financeiro_contas_a_pagar_GDN": "1StIeFbNx4rtFfBqvR3CGqR8v03KwNmV0TXTSp9SUymE",
+    "Financeiro_Completo_GDN": "1RUYjXLuhACk5eo6uO_61ZbrZt9z6LF_mwhwB9B-Ntcg"
 }
 
 def limpar_aba_completa(aba, nome_aba):
@@ -40,25 +40,25 @@ def limpar_aba_completa(aba, nome_aba):
 print("🗑️ Iniciando exclusão COMPLETA de todas as linhas das planilhas...")
 
 # 1. Limpa TUDO de Contas a Receber
-print("\n📋 Limpando: Financeiro_contas_a_receber_Bluefields")
-planilha_receber = client.open_by_key(planilhas_ids["Financeiro_contas_a_receber_Bluefields"])
+print("\n📋 Limpando: Financeiro_contas_a_receber_GDN")
+planilha_receber = client.open_by_key(planilhas_ids["Financeiro_contas_a_receber_GDN"])
 aba_receber = planilha_receber.sheet1
 limpar_aba_completa(aba_receber, "Contas a Receber")
 
 # 2. Limpa TUDO de Contas a Pagar
-print("\n📋 Limpando: Financeiro_contas_a_pagar_Bluefields")
-planilha_pagar = client.open_by_key(planilhas_ids["Financeiro_contas_a_pagar_Bluefields"])
+print("\n📋 Limpando: Financeiro_contas_a_pagar_GDN")
+planilha_pagar = client.open_by_key(planilhas_ids["Financeiro_contas_a_pagar_GDN"])
 aba_pagar = planilha_pagar.sheet1
 limpar_aba_completa(aba_pagar, "Contas a Pagar")
 
 # 3. Limpa TUDO de Financeiro Completo - Aba principal (sheet1)
-print("\n📋 Limpando: Financeiro_Completo_Bluefields (sheet1)")
-planilha_completo = client.open_by_key(planilhas_ids["Financeiro_Completo_Bluefields"])
+print("\n📋 Limpando: Financeiro_Completo_GDN (sheet1)")
+planilha_completo = client.open_by_key(planilhas_ids["Financeiro_Completo_GDN"])
 aba_completo = planilha_completo.sheet1
 limpar_aba_completa(aba_completo, "Financeiro Completo - Principal")
 
 # 4. Limpa TUDO de Financeiro Completo - Aba Dados_Pivotados (se existir)
-print("\n📋 Limpando: Financeiro_Completo_Bluefields (Dados_Pivotados)")
+print("\n📋 Limpando: Financeiro_Completo_GDN (Dados_Pivotados)")
 try:
     aba_pivotada = planilha_completo.worksheet("Dados_Pivotados")
     limpar_aba_completa(aba_pivotada, "Dados Pivotados")
